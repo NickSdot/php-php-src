@@ -1,15 +1,18 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::setFragment() - success - with base URL with opaque path
+Test Uri\WhatWg\UrlBuilder::setFragment() - success - with base URL containing opaque path
 --FILE--
 <?php
 
-$builder = new Uri\WhatWg\UrlBuilder();
-$builder->setFragment("foo");
-$url = $builder->build(new Uri\WhatWg\Url("scheme:opaque-path"));
+$base = new Uri\WhatWg\Url('scheme:opaque-path');
+
+$url = new Uri\WhatWg\UrlBuilder()
+    ->setFragment('foo')
+    ->build($base);
 
 var_dump($url->toAsciiString());
 var_dump($url);
 var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
+var_dump($url->equals(new Uri\WhatWg\Url('#foo', $base), Uri\UriComparisonMode::IncludeFragment));
 
 ?>
 --EXPECTF--
@@ -32,4 +35,5 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["fragment"]=>
   string(3) "foo"
 }
+bool(true)
 bool(true)

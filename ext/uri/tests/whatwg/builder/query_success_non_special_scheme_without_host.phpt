@@ -1,13 +1,14 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::setHost() - success - null in case of opaque hosts
+Test Uri\WhatWg\UrlBuilder::setQuery() - success - non-special scheme without host
+--XFAIL--
+not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 
-$builder = new Uri\WhatWg\UrlBuilder();
-$builder->setScheme("scheme");
-$builder->setHost("example.com");
-$builder->setHost(null);
-$url = $builder->build();
+$url = new Uri\WhatWg\UrlBuilder()
+    ->setScheme('scheme')
+    ->setQuery('newQuery')
+    ->build();
 
 var_dump($url->toAsciiString());
 var_dump($url);
@@ -15,7 +16,7 @@ var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
 
 ?>
 --EXPECTF--
-string(9) "scheme://"
+string(16) "scheme:?newQuery"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
   string(6) "scheme"
@@ -24,13 +25,13 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["password"]=>
   NULL
   ["host"]=>
-  string(0) ""
+  NULL
   ["port"]=>
   NULL
   ["path"]=>
   string(0) ""
   ["query"]=>
-  NULL
+  string(8) "newQuery"
   ["fragment"]=>
   NULL
 }

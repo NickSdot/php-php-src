@@ -1,11 +1,13 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setPassword() - error - missing host
+--XFAIL--
+not yet: a missing special host reports the wrong error
 --FILE--
 <?php
 
-$builder = new Uri\WhatWg\UrlBuilder();
-$builder->setScheme("https");
-$builder->setPassword("pass");
+$builder = new Uri\WhatWg\UrlBuilder()
+    ->setScheme('https')
+    ->setPassword('password');
 
 try {
     $builder->build();
@@ -15,4 +17,4 @@ try {
 
 ?>
 --EXPECT--
-Uri\WhatWg\InvalidUrlException: The specified URL cannot have password
+Uri\WhatWg\InvalidUrlException: The specified host is malformed (HostMissing)

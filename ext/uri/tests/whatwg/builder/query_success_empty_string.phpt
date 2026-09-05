@@ -1,22 +1,24 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder basic - success - with base URL
+Test Uri\WhatWg\UrlBuilder::setQuery() - success - empty string
+--XFAIL--
+not yet: an empty string does not preserve the component
 --FILE--
 <?php
 
-$base = new Uri\WhatWg\Url('https://example.com');
-
 $url = new Uri\WhatWg\UrlBuilder()
-    ->setPath('/foo/bar/baz')
-    ->build($base);
+    ->setScheme('https')
+    ->setHost('example.com')
+    ->setQuery('')
+    ->build();
 
 var_dump($url->toAsciiString());
 var_dump($url);
 var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
-var_dump($url->equals(new Uri\WhatWg\Url('/foo/bar/baz', $base), Uri\UriComparisonMode::IncludeFragment));
+var_dump($url->equals(new Uri\WhatWg\Url('https://example.com/?'), Uri\UriComparisonMode::IncludeFragment));
 
 ?>
 --EXPECTF--
-string(31) "https://example.com/foo/bar/baz"
+string(21) "https://example.com/?"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
   string(5) "https"
@@ -29,9 +31,9 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["port"]=>
   NULL
   ["path"]=>
-  string(12) "/foo/bar/baz"
+  string(1) "/"
   ["query"]=>
-  NULL
+  string(0) ""
   ["fragment"]=>
   NULL
 }

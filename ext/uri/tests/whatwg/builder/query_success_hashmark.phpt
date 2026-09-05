@@ -1,15 +1,15 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::setFragment() - success - contains tab and newline characters
+Test Uri\WhatWg\UrlBuilder::setQuery() - success - hashmark
 --FILE--
 <?php
 
 $errors = [];
 
 $url = new Uri\WhatWg\UrlBuilder()
-    ->setScheme('foo')
+    ->setScheme('https')
     ->setHost('example.com')
-    ->setFragment("\tfo\no")
-    ->build(errors: $errors);
+    ->setQuery('a#b')
+    ->build(null, $errors);
 
 var_dump($url->toAsciiString());
 var_dump($url);
@@ -18,10 +18,10 @@ var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
 
 ?>
 --EXPECTF--
-string(21) "foo://example.com#foo"
+string(26) "https://example.com/?a%23b"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
-  string(3) "foo"
+  string(5) "https"
   ["username"]=>
   NULL
   ["password"]=>
@@ -31,18 +31,17 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["port"]=>
   NULL
   ["path"]=>
-  string(0) ""
+  string(1) "/"
   ["query"]=>
-  NULL
+  string(5) "a%23b"
   ["fragment"]=>
-  string(3) "foo"
+  NULL
 }
 array(1) {
   [0]=>
   object(Uri\WhatWg\UrlValidationError)#%d (%d) {
     ["context"]=>
-    string(5) "	fo
-o"
+    string(2) "#b"
     ["type"]=>
     enum(Uri\WhatWg\UrlValidationErrorType::InvalidUrlUnit)
     ["failure"]=>

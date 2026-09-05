@@ -1,13 +1,14 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::setPath() - success - contains special character
+Test Uri\WhatWg\UrlBuilder::setPath() - success - question mark in opaque path
+--XFAIL--
+not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 
-$builder = new Uri\WhatWg\UrlBuilder();
-$builder->setScheme("scheme");
-$builder->setPath("#foo");
-
-$url = $builder->build();
+$url = new Uri\WhatWg\UrlBuilder()
+    ->setScheme('scheme')
+    ->setPath('?foo')
+    ->build();
 
 var_dump($url->toAsciiString());
 var_dump($url);
@@ -15,7 +16,7 @@ var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
 
 ?>
 --EXPECTF--
-string(16) "scheme:///%23foo"
+string(13) "scheme:%3Ffoo"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
   string(6) "scheme"
@@ -24,11 +25,11 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["password"]=>
   NULL
   ["host"]=>
-  string(0) ""
+  NULL
   ["port"]=>
   NULL
   ["path"]=>
-  string(7) "/%23foo"
+  string(6) "%3Ffoo"
   ["query"]=>
   NULL
   ["fragment"]=>

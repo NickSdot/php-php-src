@@ -1,12 +1,14 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::setScheme() - success - contains digit & special characters
+Test Uri\WhatWg\UrlBuilder::setHost() - success - null with non-special scheme
 --XFAIL--
 not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 
 $url = new Uri\WhatWg\UrlBuilder()
-    ->setScheme('my-12+34.scheme')
+    ->setScheme('scheme')
+    ->setHost('example.com')
+    ->setHost(null)
     ->build();
 
 var_dump($url->toAsciiString());
@@ -15,10 +17,10 @@ var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
 
 ?>
 --EXPECTF--
-string(16) "my-12+34.scheme:"
+string(7) "scheme:"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
-  string(15) "my-12+34.scheme"
+  string(6) "scheme"
   ["username"]=>
   NULL
   ["password"]=>

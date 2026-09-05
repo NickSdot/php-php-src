@@ -1,39 +1,38 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder basic - success - with scheme-relative URL
+Test Uri\WhatWg\UrlBuilder::setScheme() - success - matching non-special scheme with base URL
 --XFAIL--
 not yet: builder does not resolve this reference against the base URL correctly
 --FILE--
 <?php
 
-$base = new Uri\WhatWg\Url('https://user:pass@example.com:123/foo/bar?query#hash');
+$base = new Uri\WhatWg\Url('scheme://user:pass@example.com:123/base/path?oldQuery#oldFragment');
 
 $url = new Uri\WhatWg\UrlBuilder()
-    ->setHost('example.net')
-    ->setPath('/foo/bar/baz')
-    ->setPort(124)
+    ->setScheme('scheme')
+    ->setPath('opaquePath')
     ->build($base);
 
 var_dump($url->toAsciiString());
 var_dump($url);
 var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
-var_dump($url->equals(new Uri\WhatWg\Url('//example.net:124/foo/bar/baz', $base), Uri\UriComparisonMode::IncludeFragment));
+var_dump($url->equals(new Uri\WhatWg\Url('scheme:opaquePath', $base), Uri\UriComparisonMode::IncludeFragment));
 
 ?>
 --EXPECTF--
-string(35) "https://example.net:124/foo/bar/baz"
+string(17) "scheme:opaquePath"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
-  string(5) "https"
+  string(6) "scheme"
   ["username"]=>
   NULL
   ["password"]=>
   NULL
   ["host"]=>
-  string(11) "example.net"
+  NULL
   ["port"]=>
-  int(124)
+  NULL
   ["path"]=>
-  string(12) "/foo/bar/baz"
+  string(10) "opaquePath"
   ["query"]=>
   NULL
   ["fragment"]=>

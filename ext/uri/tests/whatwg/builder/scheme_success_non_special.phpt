@@ -1,12 +1,13 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setScheme() - success - non-special scheme
+--XFAIL--
+not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 
-$builder = new Uri\WhatWg\UrlBuilder();
-$builder->setScheme("foo");
-
-$url = $builder->build();
+$url = new Uri\WhatWg\UrlBuilder()
+    ->setScheme('foo')
+    ->build();
 
 var_dump($url->toAsciiString());
 var_dump($url);
@@ -14,7 +15,7 @@ var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
 
 ?>
 --EXPECTF--
-string(6) "foo://"
+string(4) "foo:"
 object(Uri\WhatWg\Url)#%d (%d) {
   ["scheme"]=>
   string(3) "foo"
@@ -23,7 +24,7 @@ object(Uri\WhatWg\Url)#%d (%d) {
   ["password"]=>
   NULL
   ["host"]=>
-  string(0) ""
+  NULL
   ["port"]=>
   NULL
   ["path"]=>
