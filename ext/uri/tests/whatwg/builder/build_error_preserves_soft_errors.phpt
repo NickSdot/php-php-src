@@ -1,7 +1,5 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::build() - error - preserves validation errors argument
---XFAIL--
-not yet: the validation errors argument is modified on failure
+Test Uri\WhatWg\UrlBuilder::build() - error - preserves soft errors argument
 --FILE--
 <?php
 

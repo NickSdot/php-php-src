@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setPassword() - error - missing host
---XFAIL--
-not yet: a missing special host reports the wrong error
 --FILE--
 <?php
 

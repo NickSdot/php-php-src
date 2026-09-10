@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setPath() - success - hashmark in opaque path
---XFAIL--
-not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 

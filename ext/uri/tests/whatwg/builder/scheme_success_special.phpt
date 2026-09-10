@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setScheme() - success - contains digit & special characters
---XFAIL--
-not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 

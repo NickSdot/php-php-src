@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setFragment() - success - empty string
---XFAIL--
-not yet: an empty string does not preserve the component
 --FILE--
 <?php
 

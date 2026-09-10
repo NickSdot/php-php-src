@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setHost() - error - backslash delimiter
---XFAIL--
-not yet: host delimiters are not rejected
 --FILE--
 <?php
 

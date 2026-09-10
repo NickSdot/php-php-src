@@ -9,7 +9,7 @@ $url = new Uri\WhatWg\UrlBuilder()
     ->setScheme("\tfo\no")
     ->setHost('example.com')
     ->setUsername("f\no\ro\t")
-    ->build(errors: $errors);
+    ->build(softErrors: $errors);
 
 var_dump($url->toAsciiString());
 var_dump($url);

@@ -1,7 +1,5 @@
 --TEST--
-Test Uri\WhatWg\UrlBuilder::build() - success - clears validation errors from previous build
---XFAIL--
-not yet: validation errors are not cleared between builds
+Test Uri\WhatWg\UrlBuilder::build() - success - clears soft errors from previous build
 --FILE--
 <?php
 

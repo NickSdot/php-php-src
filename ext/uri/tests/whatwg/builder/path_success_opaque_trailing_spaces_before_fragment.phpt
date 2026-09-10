@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setPath() - success - trailing spaces before fragment in opaque path
---XFAIL--
-not yet: builder does not resolve this reference against the base URL correctly
 --FILE--
 <?php
 

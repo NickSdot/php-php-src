@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setQuery() - success - empty string
---XFAIL--
-not yet: an empty string does not preserve the component
 --FILE--
 <?php
 

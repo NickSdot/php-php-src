@@ -9,7 +9,7 @@ $url = new Uri\WhatWg\UrlBuilder()
     ->setScheme('https')
     ->setHost('example.com')
     ->setPath('/a#b')
-    ->build(null, $errors);
+    ->build(softErrors: $errors);
 
 var_dump($url->toAsciiString());
 var_dump($url);

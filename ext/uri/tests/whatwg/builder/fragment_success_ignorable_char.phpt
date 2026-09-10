@@ -9,12 +9,12 @@ $url = new Uri\WhatWg\UrlBuilder()
     ->setScheme('foo')
     ->setHost('example.com')
     ->setFragment("\tfo\no")
-    ->build(errors: $errors);
+    ->build(softErrors: $errors);
 
 var_dump($url->toAsciiString());
 var_dump($url);
 var_dump($errors);
-var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString())));
+var_dump($url->equals(new Uri\WhatWg\Url($url->toAsciiString()), Uri\UriComparisonMode::IncludeFragment));
 
 ?>
 --EXPECTF--

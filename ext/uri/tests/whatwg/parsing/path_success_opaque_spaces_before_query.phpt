@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\Url parsing - opaque path - spaces before query
---XFAIL--
-not yet: opaque-path spaces before a query are not handled correctly
 --FILE--
 <?php
 

@@ -1,7 +1,5 @@
 --TEST--
 Test Uri\WhatWg\UrlBuilder::setHost() - success - null with non-special scheme
---XFAIL--
-not yet: a hostless non-special URL is built with the wrong path type
 --FILE--
 <?php
 
